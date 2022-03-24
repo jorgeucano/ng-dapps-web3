@@ -21,6 +21,11 @@ export type User = Moralis.User<Moralis.Attributes>;
         </pre>
       </ng-container>
 
+      <div *ngFor="let nft of nfts">
+        <h1>{{nft.name}}</h1>
+        <img [src]="nft.image" [alt]="nft.name" />
+      </div>
+
       <!-- No user -->
       <ng-template #userNotDefined>
         <pre>User not defined, please log in.</pre>
@@ -30,4 +35,5 @@ export type User = Moralis.User<Moralis.Attributes>;
 })
 export class UserComponent {
     @Input() user?: User;
+    @Input() nfts?: any;
 }

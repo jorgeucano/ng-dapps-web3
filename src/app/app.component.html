@@ -3,6 +3,7 @@
   <ng-container *ngIf="user; else needLogin">
     <!-- Logout -->
     <button (click)="logout()">Logout</button>
+    <button (click)="listNFTs()">listNFTs</button>
   </ng-container>
   <ng-template #needLogin>
     <!-- Logins -->
@@ -13,5 +14,5 @@
   </ng-template>
 </div>
 
-  <!-- User -->
-  <app-user [user]="user"></app-user>
+<!-- User -->
+<app-user [user]="user" [nfts]="nftsList"></app-user>
