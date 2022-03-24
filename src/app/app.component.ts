@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'ngDApp';
   user?: User;
   nftsList: any = [];
+  balance: any;
 
   constructor(private http: HttpClient) {}
 
@@ -29,6 +30,21 @@ export class AppComponent implements OnInit {
   private setLoggedInUser(loggedInUser?: User) {
     console.log(`user`, loggedInUser);
     this.user = loggedInUser;
+    if(this.user) {
+      this.getEhtBalance();
+    }
+  }
+
+  // get ehtBalance
+  async getEhtBalance() {
+    const options = {
+      chain: 'eth',
+      address: this.user?.attributes.ethAddress
+    }
+    // @ts-ignore
+    const balanceObject = await Moralis.Web3API.account.getNativeBalance(options);
+    console.log(balanceObject);
+    this.balance = balanceObject.balance;
   }
 
   async login(provider: 'metamask' | 'walletconnect' = 'metamask') {
