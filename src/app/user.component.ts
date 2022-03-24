@@ -19,6 +19,14 @@ export type User = Moralis.User<Moralis.Attributes>;
           <strong>Address:</strong>
           <span>{{ user?.attributes?.ethAddress }}</span>
         </pre>
+        <pre style="display: flex;">
+          <strong>Eth Balance:</strong>
+          <span>{{ balance }}</span>
+        </pre>
+        <pre style="display: flex;">
+          <strong>NTFs:</strong>
+          <span>{{ nfts.length }}</span>
+        </pre>
       </ng-container>
 
       <div *ngFor="let nft of nfts">
@@ -36,4 +44,5 @@ export type User = Moralis.User<Moralis.Attributes>;
 export class UserComponent {
     @Input() user?: User;
     @Input() nfts?: any;
+    @Input() balance?: any;
 }
