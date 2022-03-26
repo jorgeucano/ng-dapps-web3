@@ -59,6 +59,17 @@ export class AppComponent implements OnInit {
     const polygonNFTs = await Moralis.Web3API.account.getNFTs(options);
     console.log(polygonNFTs);
     polygonNFTs.result?.forEach((nftResult) => {
+
+      // moralis gateway (tiene que tener una mejor forma)
+      if(nftResult.token_uri?.includes('https://gateway.moralisipfs.com/ipfs')) {
+        // @ts-ignore
+        const metadata = JSON.parse(nftResult.metadata);
+        console.log(metadata);
+        const imageData = metadata.image.replace('ipfs://', 'https://gateway.moralisipfs.com/ipfs/');
+        this.nftsList.push({name: metadata.name, image: imageData});
+      }
+
+      // open sea api v2 (por ahora la mas facil de usar)
       if(nftResult.token_uri?.includes('https://api.opensea.io/api/v2')) {
         this.http.get(nftResult.token_uri)
         .pipe(first())
