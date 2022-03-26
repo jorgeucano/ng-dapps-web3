@@ -58,6 +58,7 @@ export class AppComponent implements OnInit {
     // @ts-ignore
     const polygonNFTs = await Moralis.Web3API.account.getNFTs(options);
     console.log(polygonNFTs);
+    this.nftsList = [];
     polygonNFTs.result?.forEach((nftResult) => {
 
       // moralis gateway (tiene que tener una mejor forma)
@@ -69,7 +70,7 @@ export class AppComponent implements OnInit {
         this.nftsList.push({name: metadata.name, image: imageData});
       }
 
-      // open sea api v2 (por ahora la mas facil de usar)
+      // open sea api v2 (por ahora la mas facil de usarn)
       if(nftResult.token_uri?.includes('https://api.opensea.io/api/v2')) {
         this.http.get(nftResult.token_uri)
         .pipe(first())
