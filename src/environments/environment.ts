@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   // get from https://admin.moralis.io/servers
   moralis: {
-    appId: 'YOUR_APP_ID',
-    serverUrl: 'YOUR_SERVER_URL'
+    appId: '1ZmZHntYfb4qr2IFcshUCGW7jyUX41b13AjBjVx7',
+    serverUrl: 'https://macwujboltxu.usemoralis.com:2053/server'
   }
 };
